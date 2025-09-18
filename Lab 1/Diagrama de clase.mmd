@@ -6,7 +6,8 @@ classDiagram
         -carrera: string
         +registrar(): void
         +editarPerfil(): void
-        +consultarCursos(): List<Curso>
+        +consultarCursosDisponibles(): List<Curso>
+        +consultarCursosMatriculados(): List<Curso>
     }
  
     class Curso {
