@@ -14,8 +14,52 @@ classDiagram
         -codigo: string
         -nombre: string
         -creditos: int
+    }
+
+    class Periodo {
+        -anio: int
+        -nombre: string
+        -activo: boolean
+        +iniciarPeriodo(): void
+        +finalizarPeriodo(): void
+    }
+    
+
+    class Profesor {
+        -id: int
+        -nombre: string
+        -email: string
+        -carrera: string
+        -departamento: string
+        +asignarCurso(): void
+        +definirHorario(): void
+        +consultarCursosAsignados(): List<Curso>
+    }
+
+
+    class matricula {
+        -idMatricula: int
+        -idEstudiante: int
+        -FechaMatricula: date
+        -idgrupo: int
         +matricular(): void
         +retirar(): void
     }
- 
-    Estudiante "1" --> "*" Curso : matrícula
+    class Grupo {
+        -id_grupo: int
+        -numero_grupo: string
+        -horario: string
+        -capacidad: int
+        -idProfesor: int?
+        -idPeriodo: int
+        +crearGrupo(): void
+        +unirseAGrupo(): void
+        +salirDeGrupo(): void
+    }
+   
+    Grupo "1" --> "1" Curso : ofrece
+    Grupo "1" --> "1" Periodo : en
+    Grupo "1" --> "1" Profesor : impartido por por
+    Estudiante "1" --> "1..*" matricula : realiza
+    matricula "1" --> "1" Grupo : De 
+
