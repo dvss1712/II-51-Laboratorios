@@ -1,14 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="es">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>- Laboratorios Programacion Internet </title>
-  </head>
+    <title>Índice de Laboratorios | Programación para Internet</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f8; /* Fondo claro */
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra el contenido horizontalmente */
+        }
 
-  <body>
-    <a href="Lab01">Laboratorio 1</a>
-    <a href="Lab02">Laboratorio 2</a>
-    <a href="Lab03">Laboratorio 3</a>    
-  </body>
+        header {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: #007bff; /* Color primario azul */
+            font-size: 2.5em;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .laboratorios-list {
+            list-style: none; /* Quita los puntos de la lista */
+            padding: 0;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .laboratorios-list li {
+            background-color: #ffffff; /* Fondo blanco para cada elemento */
+            border: 1px solid #ddd;
+            border-radius: 8px; /* Bordes redondeados */
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .laboratorios-list li:hover {
+            transform: translateY(-3px); /* Efecto al pasar el ratón */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .laboratorios-list a {
+            text-decoration: none; /* Quita el subrayado del enlace */
+            color: #333;
+            display: block; /* Ocupa todo el ancho del <li> */
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .laboratorios-list a:hover {
+            color: #0056b3; /* Color más oscuro al pasar el ratón */
+            background-color: #e9ecef; /* Fondo claro al pasar el ratón */
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Laboratorios de Programación para Internet</h1>
+        <p>Selecciona el laboratorio que deseas revisar:</p>
+    </header>
+
+    <main>
+        <ul class="laboratorios-list">
+            <li>
+                <a href="Lab01/index.html">Laboratorio 1: Introducción a HTML y CSS</a>
+            </li>
+            <li>
+                <a href="Lab02/index.html">Laboratorio 2: Estructuras de Control con JavaScript</a>
+            </li>
+            <li>
+                <a href="Lab03/index.html">Laboratorio 3: Formularios y Validación</a>
+            </li>
+            <li>
+                <a href="Lab04/index.html">Laboratorio 4: Manipulación del DOM</a>
+            </li>
+        </ul>
+    </main>
+    
+    <footer>
+        <p><small>&copy; 2025. Material del Curso.</small></p>
+    </footer>
+</body>
 </html>
