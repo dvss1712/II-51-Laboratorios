@@ -2,122 +2,288 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LAB-03</title>
   <style>
-    body{
-      background-color: rgba(0, 0, 0, 0.623);
-    }
-    .form-group label {
-      display: block;
-      margin-left: 5px;
-      font-weight: bold;
+
+
+    
+    /*Estilos generales*/
+    body {
+      background: linear-gradient(135deg, #e0f2fe, #fef3c7);
+      color: #222;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .form-input {
+
+
+
+
+    /* Encabezado principal */
+    header {
+    background: linear-gradient(90deg, #2563eb 60%, #38bdf8 100%);
+    color: #d1c7c7;
+    padding: 24px 0 16px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 12px;
+   box-shadow: 0 4px 16px rgba(56,189,248,0.15);
+    }
+
+
+
+    /* Menú de navegación */
+    nav ul {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #2563eb22;
+  padding: 16px 32px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  border: 2px solid #38bdf8;
+  position: relative;
+    }
+
+
+
+    /* Contenedor principal */
+    main {
       width: 100%;
-      padding: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      max-width: 600px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #cfd8dc;
+      padding: 30px 20px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
+
+
+    /* Etiquetas del formulario */
+    .form-group label {
+  display: block;
+  margin-top: 10px;
+  color: #2563eb;
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+  text-align: center;
+    }
+
+
+
+
+    /* Campos del formulario */
+    .form-input {
+  width: 70%;
+  min-width: 180px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 8px;
+  margin-bottom: 14px;
+  border: 1.5px solid #38bdf8;
+  border-radius: 6px;
+  background: #f8fafc;
+  color: #222;
+  font-size: 1rem;
+    }
+
+
+
+
+    /* Agrupación de campos y leyendas */
+    fieldset {
+  border: 1.5px solid #38bdf8;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  background: #f8fafc;
+  padding: 14px 10px;
+    }
+    legend {
+  color: #2563eb;
+  font-weight: bold;
+  font-size: 1.08rem;
+    }
+
+
+
+
+
+    /* Botón de envío del formulario */
     .submit-button {
-      padding: 10px 50px;
-      border-radius: 15px;
-      transition: background-color 0.3s ease;
+  padding: 12px 38px;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #2563eb 60%, #38bdf8 100%);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 16px;
+  font-size: 1.08rem;
+  box-shadow: 0 4px 16px #2563eb44;
+  letter-spacing: 1px;
+      
+    }
+    .submit-button:hover {
+  background: linear-gradient(90deg, #38bdf8 0%, #2563eb 100%);
+  box-shadow: 0 8px 32px #2563eb66;
+  transform: scale(1.06);
     }
 
-    .submit-button:hover {
-      background-color: #2563eb;
-      /* Un azul más oscuro al pasar el mouse */
+
+    /* Colores de checkboxes */
+    input[type="radio"], input[type="checkbox"] {
+      accent-color: #2563eb;
+    }
+
+
+
+
+    /* Pie de página */
+    footer {
+  background: linear-gradient(90deg, #2563eb 60%, #38bdf8 100%);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0 6px 0;
+  margin-top: 28px;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 8px #2563eb22;
+  font-size: 0.98rem;
+  letter-spacing: 1px;
+  border-top: 2px solid #fff;
+  position: relative;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- encabezado de cuerpo de la pagina-->
+  <!-- Encabezado principal de la página -->
   <header>
-    <h1>Plataforma Educativa Universidad Central</h1>
+    <!-- Icono y título principal -->
+    <span style="font-size:2.5rem; vertical-align:middle; margin-right:10px;">🎓</span>
+    <h1 style="display:inline; font-size:2.2rem; font-weight:bold; vertical-align:middle; margin:0;">Plataforma Educativa Universidad Central</h1>
+    <br>
   </header>
 
-  <!-- menu -->
+  <!-- Menú de navegación principal -->
   <nav>
     <ul>
-      <li><a href="final/">Inicio</a></li>
+      <li><a href="#">Inicio</a></li>
       <li><a href="#">Cursos</a></li>
       <li><a href="#">Contacto</a></li>
       <li><a href="#">Ayuda</a></li>
     </ul>
   </nav>
 
+
+  
+ 
   <main>
+    <!-- registro de usuario -->
     <section>
       <form action="#" method="post">
         <fieldset>
-          <legend>Registro de Usuario</legend>
+          <legend>Registro de Usuario:</legend>
 
           <div class="form-group">
+            <!-- nombre de usuario -->
             <label for="username">Nombre de Usuario:</label>
             <input class="form-input" type="text" id="username" name="username" required>
 
+            <!-- correo electrónico -->
             <label for="email">Correo Electrónico:</label>
             <input class="form-input" type="email" id="email" name="email" required>
 
+            <!-- contraseña -->
             <label for="password">Contraseña:</label>
             <input class="form-input" type="password" id="password" name="password" required>
           </div>
 
-
-
+          <!-- Genero -->
           <fieldset>
-            <legend>Genero</legend>
-            <div>
-              <div>
+            <legend>Género:</legend>
+            <div style="display: flex; gap: 18px; flex-wrap: wrap; margin-top: 8px;">
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="radio" value="m" name="genero" id="g-m">
-                <label for="g-m">Masculino</label>
-              </div>
-              <div>
+                Masculino
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="radio" value="f" name="genero" id="g-f">
-                <label for="g-f">Femenino</label>
-              </div>
-              <div>
+                Femenino
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="radio" value="o" name="genero" id="g-o">
-                <label for="g-o">Otro</label>
-              </div>
-              <div>
+                Otro
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="radio" value="n" name="genero" id="g-n">
-                <label for="g-n">Prefiero no decirlo</label>
-              </div>
+                Prefiero no decirlo
+              </label>
             </div>
           </fieldset>
 
+
+
+
+
+          <!-- Selección de intereses -->
           <fieldset>
             <legend>Seleccione sus intereses:</legend>
-            <div>
-              <div>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px;">
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="checkbox" name="intereses" id="interes1" value="programacion">
-                <label for="interes1">Programación</label>
-              </div>
-              <div>
+                Programación
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="checkbox" name="intereses" id="interes2" value="diseño">
-                <label for="interes2">Diseño Gráfico</label>
-              </div>
-              <div>
+                Diseño Gráfico
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="checkbox" name="intereses" id="interes3" value="marketing">
-                <label for="interes3">Marketing Digital</label>
-              </div>
-              <div>
+                Marketing Digital
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
                 <input type="checkbox" name="intereses" id="interes4" value="ciencia">
-                <label for="interes4">Ciencia de Datos</label>
-              </div>
+                Ciencia de Datos
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
+                <input type="checkbox" name="intereses" id="interes5" value="robotica">
+                Robótica
+              </label>
+              <label style="display: flex; align-items: center; gap: 6px;">
+                <input type="checkbox" name="intereses" id="interes6" value="videojuegos">
+                Videojuegos
+              </label>
+            </div>
           </fieldset>
 
-          <button class="submit-button" type="submit">Registrar</button>
+
+
+          <!-- Botón para enviar el formulario -->
+          <div style="display: flex; justify-content: center;">
+            <button class="submit-button" type="submit">Registrar</button>
+          </div>
         </fieldset>
       </form>
     </section>
+
+
+
+    <!-- Sección de video -->
     <section>
       <iframe width="560" height="315" src="https://www.youtube.com/embed/LXb3EKWsInQ?si=KRC7kR0cZzGenVSb&amp;start=61"
         title="Video Incrustado" frameborder="0"
@@ -125,9 +291,12 @@
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
   </main>
+
+
+  <!-- Pie de página -->
   <footer>
-    <p>&copy; 2023 Plataforma Educativa Universidad Central</p>
-    <p>Contacto: <a href="mailto:fabian.chinchilla@uc.ac.cr">Fabian</p>
+    <p style="margin: 0 0 4px 0; font-weight:600;">Plataforma Educativa Universidad Central</p>
+    <p style="margin: 0;">&copy; 2025 Universidad Central | Contacto: <a href="mailto:dv1712@gmail.com" style="color:#fff; text-decoration:underline;">David Salazar</a></p>
   </footer>
 </body>
 
