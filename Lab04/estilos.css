@@ -4,7 +4,14 @@
 
     h1,
     h2 {
+        padding: 5px;
       color: rgb(43, 117, 49);
+    }
+
+    .header-titles {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      margin: 30px 0 10px 0;
     }
 
     #main-title {
@@ -26,9 +33,27 @@
     }
 
     .submit-button {
+        margin-top: 20px;
       padding: 10px 50px;
-      border-radius: 15px;
-      transition: background-color 0.3s ease;
+      border-radius: 5px;
+      background-color: #265c16;
+      text-transform: uppercase;
+        font-weight: bold;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+
+    }
+   
+
+    fieldset {
+        border: 2px solid #912929;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 15px;
+        background-color: #e3bcbc;
     }
 
     .submit-button:hover {
@@ -41,12 +66,14 @@
       margin: 0;
     }
 
-    .menu {
+    .menu, footer {
       background-color: #265c16;
       overflow: hidden;
       /* margin: 20px 0 50px 0 ;*/
       margin-top: 20px;
       border-radius: 5px;
+      color :white;
+    
     }
 
     .menu ul {
@@ -71,7 +98,54 @@
 
     .menu a:hover {
       background-color: #b92222;
-      border-radius: 4px ;
-        border: bottom: 2px solid #fff
-    ;
+      border-radius: 4px;
+      border-bottom: 2px solid #fff;
+    }
+    
+    #form-section {
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #912929;
+        border-radius: 5px;
+        max-width: 400px;
+        background-color: #ac7a7a;
+     
+    }
+
+
+    #video-section {
+        text-align: center;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+
+    }
+    #video-section iframe {
+        border: 5px solid #912929;
+        border-radius: 10px;
+    
+    
+    }
+
+    footer {
+
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 30px;
+        background-color: #265c16;
+        color: white;
+        border-radius: 5px;
+    }
+
+    footer h1 {
+        margin: 5px 0;
+        font-size: 1.5em;
+        font-family: Arial, Helvetica, sans-serif;
+    }   
+    footer p {
+        margin: 5px 0;
+        font-size: 1em;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        
     }
