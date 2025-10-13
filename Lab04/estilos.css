@@ -1,0 +1,69 @@
+ body {
+      background-color: rgba(241, 167, 167, 0.623);
+    }
+
+    h1,
+    h2 {
+      color: rgb(150, 61, 61);
+    }
+
+    #main-title {
+      font-size: 2.5em;
+      border-bottom: 2px solid white;
+    }
+
+    .form-group label {
+      display: block;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 10px 50px;
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #2563eb;
+      /* Un azul más oscuro al pasar el mouse */
+    }
+    .title {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+    }
+
+    .menu {
+      background-color: #265c16;
+      overflow: hidden;
+    }
+
+    .menu ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+    }
+    .menu li {
+      display: inline;
+      margin: 0 15px;
+    }
+    .menu a {
+        color: white;
+      text-decoration: none;
+      padding: 14px 20px;
+      display: block;
+    }
+
+    .menu a:hover {
+      background-color: #b92222;
+    }
