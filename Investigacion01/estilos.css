@@ -8,22 +8,20 @@
     --color-background: #f8f9fa; 
     --color-text: #343a40; 
     --color-completado: #28a745; /* Verde para completado en la parte de objetivos */
-    --color-background2: #fff; /* color blanco */
-    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra suave, los 3 primeros 0s son de la base del color y el decimal de la transparencia */
+    --color-background2: #ffff; /* color blanco */
+   
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipo de letra */
-    padding: 0;/* espacio que existe entre el contenido (texto, imagen) y el borde del elemento. */
-    margin: 0;/* espacio que existe fuera del borde de un elemento, separándolo de otros elementos */
-    background-color: var(--color-background); /* Color de fondo utilizando la variable creada en*/
-    color: var(--color-text); /* Color del texto utilizando la variable creada en :root */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: var(--color-background); 
+    color: var(--color-text); 
 }
 
 
 
 
-/* Centrar todo el contenido */
+/* contenedpr para todo el contenido */
 .main-container {
     width: 95%; 
     max-width: 900px; 
@@ -31,7 +29,7 @@ body {
     padding: 30px;
     background-color: var(--color-background2);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+    box-shadow: 0 10px 30px rgba(134, 118, 118, 0.15); 
 }
 
 
@@ -58,21 +56,21 @@ h2, h3, h4, h5 {
 /* estilos de la seccion temas por abordar aplicando hover para resaltar */
 
 .temas-abordar { 
-    list-style: none; /* Quita los números predeterminados */
+    list-style: none; /* quitar el estilo de la lista   */
     padding: 0; /* Quita el padding predeterminado */
     display: flex; /* Distribuye los temas horizontalmente */
-    gap: 10px; /* Espacio entre los ítems */
+    gap: 50px; /* Espacio entre los ítems */
    
 }
 
 .temas-abordar li {
-    flex-grow: 1; /* Rellenar el espacio disponible*/
+   
     background-color: var(--color-background2);
     padding: 12px 20px;
     border-radius: 8px;
     font-weight: 600; 
     text-align: center;
-    transition: all 0.3s ease; /* Transición al pararse sobre el elemento  */
+    transition: all 0.3s ease; /* tiempo   */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra de las cajas */
 }
 
@@ -82,7 +80,7 @@ h2, h3, h4, h5 {
     color: var (--color-background2);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
     transform: translateY(-3px); /* Se levanta un poco */
-    cursor: default; /* tipo de Puntero  */
+    
 }
 
 
@@ -94,7 +92,6 @@ table {
     border: none; /* Quitar borde general */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
     border-radius: 8px; /* Bordes redondeados para la tabla */
-    overflow: hidden; /* Asegura que los bordes redondeados se apliquen al contenido */
     transition: box-shadow 0.3s ease-in-out; 
 }
 
@@ -125,14 +122,12 @@ table:hover {
 /* TRANSICIONES DE BOTON */
 .boton-interactivo {
    
-    display: inline-block; /* Permite aplicar padding y margen */
+    
     background-color: var(--color-primario);
     color: white;
     padding: 12px 25px; 
-    text-decoration: none; /* Quita el subrayado predeterminado de los enlaces */
     border-radius: 30px; 
     font-weight: bold;
-    letter-spacing: 0.5px;
     transition: all 0.4s ease; 
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
     margin-top: 20px; 
@@ -154,10 +149,8 @@ table:hover {
     list-style: none; 
     padding: 0;
 }
-.lista-objetivos li { /* Espacio entre los objetivos */
-    margin-bottom: 8px;
-}
-.lista-objetivos label { /* Estilo de las etiquetas */
+
+.lista-objetivos label { /* Estilo de los objetivos */
     display: block;
     padding: 12px;
     background-color: var(--color-background2);
@@ -169,22 +162,13 @@ table:hover {
     border: 1px solid #e9ecef; /* Borde de loss elementos*/
 }
 
-/* Efecto HOVER: Resalta el label */
+/* Efecto hover de los objetivos */
 .lista-objetivos label:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
     transform: translateY(-2px); 
 }
 
-/* efecto de check boxc de completado */
-input[type="checkbox"]:checked + label {
-    background-color: #e3f2fd; /* Fondo de tarea completada, un azul suave */
-    color: var(--color-completado); 
-    text-decoration: line-through; 
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); 
-    border-left: 8px solid var(--color-completado); /* Barra verde de éxito */
-    text-shadow: 1px 1px 1px rgba(40, 167, 69, 0.2); 
-    opacity: 0.8; 
-}
+
 
 /* efecto de la imagen */
 
@@ -195,7 +179,7 @@ input[type="checkbox"]:checked + label {
     padding: 10px; 
     border-radius: 10px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
-    transition: box-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+    
 }
 .image-card:hover {
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); 
