@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Entregables | Programación para Internet </title>
+    <title>Entregables | Programación Web </title>
     
     <style>
         
@@ -39,22 +39,32 @@
         }
 
         
-        /*  CONTENEDOR PRINCIPAL */
+       
         
-        .site-container {
-            width: 100%;
-            max-width: 640px;
-            background-color: var(--color-gris-interfaz);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: var(--glow-sombra);
-            border: 1px solid var(--color-acento-neon);
-            transition: box-shadow 0.4s ease;
-        }
+        
+/* CONTENEDOR PRINCIPAL  */
 
-        .site-container:hover {
-            box-shadow: var(--glow-sombra-hover);
-        }
+.site-container {
+    width: 100%;
+    max-width: 650px; 
+    
+    /*  PROPIEDADES DE FONDO DE IMAGEN  */
+    background-image: url(https://crmotos.com/wp-content/uploads/2021/06/ktm-250-exc-SIX-DAYS-2024-3.jpg) ; /* Ruta de la imagen de fondo */
+    background-size: cover; /* Cubre todo el contenedor */
+    background-position: center center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    
+    /* Mantiene el color de fondo para la fusión con la imagen */
+    background-color: var(--color-gris-interfaz); 
+    
+   
+    background-blend-mode: multiply; 
+    
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: var(--glow-sombra); 
+    border: 1px solid var(--color-acento-neon);
+}
 
         
         /*  ENCABEZADO*/
@@ -79,45 +89,45 @@
             opacity: 0.9;
             margin: 0;
         }
-
-        /*  LISTA DE LABORATORIOS */
         
-        .laboratorios-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 25px 0;
-        }
+        /* ESTILOS DE LISTA DE LAVORAORTIO */
 
-        .laboratorios-list li {
-            background-color: #23313f;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            transition: all 0.25s ease;
-            overflow: hidden;
-        }
+    .laboratorios-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        justify-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 20px 0 30px 0;
+    }
 
-        .laboratorios-list li:hover {
-            transform: scale(1.015);
-            background-color: var(--color-hover-item);
-            box-shadow: var(--glow-sombra-hover);
-        }
+    .laboratorios-list li {
+        width: 100%;
+        max-width: 220px;
+    }
 
-        .laboratorios-list a {
-            text-decoration: none;
-            color: var(--color-texto-principal);
-            display: block;
-            padding: 16px 20px;
-            font-size: 1.05em;
-            font-weight: 600;
-            border-left: 5px solid transparent;
-            transition: all 0.2s ease-in-out;
-        }
+    .laboratorios-list a {
+        text-decoration: none;
+        color: var(--color-texto-principal);
+        display: block;
+        background-color: #23313f;
+        border: 1px solid var(--color-acento-neon);
+        border-radius: 6px;
+        padding: 14px 0;
+        font-size: 1.05em;
+        font-weight: 600;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        box-shadow: var(--glow-sombra);
+    }
 
-        .laboratorios-list a:hover {
-            color: var(--color-acento-neon);
-            border-left: 5px solid var(--color-acento-neon);
-            padding-left: 25px;
-        }
+    .laboratorios-list a:hover {
+        color: var(--color-acento-neon);
+        background-color: var(--color-hover-item);
+        box-shadow: var(--glow-sombra-hover);
+        transform: translateY(-2px) scale(1.03);
+    }
 
        
         /*  PIE DE PÁGINA */
