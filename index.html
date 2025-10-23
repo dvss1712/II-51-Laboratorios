@@ -3,113 +3,178 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Índice de Laboratorios | Programación para Internet</title>
+    <title>Entregables | Programación para Internet </title>
     
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f7f8; 
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
+        
+        /*  VARIABLES DE COLOR Y SOMBRAS */
+        
+        :root {
+            --color-fondo: #0c1116;
+            --color-acento-neon: #00ffff;
+            --color-texto-principal: #e0f7fa;
+            --color-gris-interfaz: #1b2632;
+            --color-hover-item: #2c3a4b;
+            --glow-sombra: 0 0 10px rgba(0, 255, 255, 0.5);
+            --glow-sombra-hover: 0 0 18px rgba(0, 255, 255, 0.9);
         }
 
-        header {
+        
+        /* ESTILOS BASE */
+        
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: var(--color-texto-principal);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        
+        /*  CONTENEDOR PRINCIPAL */
+        
+        .site-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 640px;
+            background-color: var(--color-gris-interfaz);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--glow-sombra);
+            border: 1px solid var(--color-acento-neon);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .site-container:hover {
+            box-shadow: var(--glow-sombra-hover);
+        }
+
+        
+        /*  ENCABEZADO*/
+       
+        header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #35475e;
         }
 
         h1 {
-            color: #007bff;
-            font-size: 2.5em;
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 10px;
-            display: inline-block;
+            color: var(--color-acento-neon);
+            font-size: 2.4em;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--color-acento-neon);
+            margin: 0 0 10px 0;
         }
 
+        header p {
+            font-size: 1em;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /*  LISTA DE LABORATORIOS */
+        
         .laboratorios-list {
-            list-style: none; 
+            list-style: none;
             padding: 0;
-            width: 100%;
-            max-width: 600px;
+            margin: 0 0 25px 0;
         }
 
         .laboratorios-list li {
-            background-color: #ffffff; 
-            border: 1px solid #ddd;
-            border-radius: 8px; 
-            margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-            transition: transform 0.2s, box-shadow 0.2s;
+            background-color: #23313f;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            transition: all 0.25s ease;
+            overflow: hidden;
         }
 
         .laboratorios-list li:hover {
-            transform: translateY(-3px); 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: scale(1.015);
+            background-color: var(--color-hover-item);
+            box-shadow: var(--glow-sombra-hover);
         }
 
         .laboratorios-list a {
-            text-decoration: none; 
-            color: #333;
-            display: block; 
-            padding: 15px 20px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: color 0.2s;
+            text-decoration: none;
+            color: var(--color-texto-principal);
+            display: block;
+            padding: 16px 20px;
+            font-size: 1.05em;
+            font-weight: 600;
+            border-left: 5px solid transparent;
+            transition: all 0.2s ease-in-out;
         }
 
         .laboratorios-list a:hover {
-            color: #0056b3; 
-            background-color: #e9ecef; 
-            border-radius: 8px;
+            color: var(--color-acento-neon);
+            border-left: 5px solid var(--color-acento-neon);
+            padding-left: 25px;
+        }
+
+       
+        /*  PIE DE PÁGINA */
+        
+        footer {
+            text-align: center;
+            padding-top: 15px;
+            font-size: 0.85em;
+            border-top: 1px dashed #35475e;
+            margin-top: 25px;
+            opacity: 0.85;
+        }
+
+        footer p {
+            color: #00ff00;
+            margin: 0;
+            text-shadow: 0 0 4px #00ff00;
+        }
+
+        
+        /* 📱 RESPONSIVE */
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .site-container {
+                padding: 20px;
+            }
+
+            .laboratorios-list a {
+                font-size: 1em;
+                padding: 12px 16px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Laboratorios de Programación para Internet</h1>
-        <p>Selecciona el laboratorio que deseas revisar:</p>
-    </header>
+    <div class="site-container">
+        <header>
+            <h1>[ ACCESO A DATOS ]</h1>
+            <p> Entregables: Programación para Internet - II-51 </p>
+        </header>
 
-    <main>
-        <ul class="laboratorios-list">
-            <li>
-                <a href="Lab01/index.html">Laboratorio 1:</a>
-            </li>
-            <li>
-                <a href="Lab02/index.html">Laboratorio 2:</a>
-            </li>
-            <li>
-                <a href="Lab03/index.html">Laboratorio 3</a>
-            </li>
-             <li>
-                <a href="Lab04/index.html">Laboratorio 4</a>
-            </li>
-                <li>
-                    <a href="Lab05/index.html">Laboratorio 5</a>        
-                </li>
-                <li>
-                    <a href="Lab06/index.html">Laboratorio 6</a>                
-                </li>
-                <li>
-                    <a href="Lab07/index.html">Laboratorio 7</a>
-                </li>
-                <li>
-                    <a href="Lab08/index.html">Laboratorio 8</a>
-                </li>
-                <li>
-                    <a href="investigacion01/index.html">Investigacion 1</a>
-        </ul>
-    </main>
-    
-    <footer>
-        <p><small>&copy; 2025. II-51 David Salazar .</small></p>
-    </footer>
-</body>
-</html>
+        <main>
+            <ul class="laboratorios-list">
+                <li><a href="Lab01/index.html">> Laboratorio 01</a></li>
+                <li><a href="Lab02/index.html">> Laboratorio 02</a></li>
+                <li><a href="Lab03/index.html">> Laboratorio 03</a></li>
+                <li><a href="Lab04/index.html">> Laboratorio 04</a></li>
+                <li><a href="investigacion01/index.html">> Investigación 01</a></li>
+                <li><a href="proyecto01/index.html">> Proyecto 01</a></li>
+            </ul>
+        </main>
+
+        <footer>
+            <p> &copy; 2025 |  David Salazar</p>
+        </footer>
