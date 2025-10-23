@@ -1,0 +1,26 @@
+classDiagram
+   
+
+    class Estudiante {
+        - idEstudiante: String
+        - nombreCompleto: String
+        - email: String
+        - carrera: String
+    }
+    
+    class Curso {
+        - idCurso: String
+        - nombreCurso: String
+        - creditos: int
+    }
+    
+    class Profesor {
+        - idProfesor: String
+        - nombreCompleto: String
+        - departamento: String
+        - email: String
+    }
+    
+    %% Definición de relaciones
+    Profesor "1" -- "*" Curso : imparte
+    Curso "*" -- "*" Estudiante : se_matricula_en
