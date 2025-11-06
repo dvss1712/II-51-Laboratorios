@@ -3,25 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Entregables | Programación Web </title>
-    
+    <title>Entregables | Programación Web</title>
+
+    <!-- ÍCONOS FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
-        
-        /*  VARIABLES DE COLOR Y SOMBRAS */
-        
         :root {
             --color-fondo: #0c1116;
             --color-acento-neon: #00ffff;
             --color-texto-principal: #e0f7fa;
             --color-gris-interfaz: #1b2632;
             --color-hover-item: #2c3a4b;
-            --glow-sombra: 0 0 10px rgba(0, 255, 255, 0.5);
+            --glow-sombra: 0 0 10px rgba(0, 255, 255, 0.4);
             --glow-sombra-hover: 0 0 18px rgba(0, 255, 255, 0.9);
         }
 
-        
-        /* ESTILOS BASE */
-        
         * {
             box-sizing: border-box;
         }
@@ -36,39 +33,27 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        
-       
-        
-        
-/* CONTENEDOR PRINCIPAL  */
+        /* CONTENEDOR PRINCIPAL */
+        .site-container {
+            width: 100%;
+            max-width: 650px;
+            background-image: url(https://crmotos.com/wp-content/uploads/2021/06/ktm-250-exc-SIX-DAYS-2024-3.jpg);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-color: var(--color-gris-interfaz);
+            background-blend-mode: multiply;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: var(--glow-sombra);
+            border: 1px solid var(--color-acento-neon);
+            animation: fadeInContainer 1.2s ease forwards;
+        }
 
-.site-container {
-    width: 100%;
-    max-width: 650px; 
-    
-    /*  PROPIEDADES DE FONDO DE IMAGEN  */
-    background-image: url(https://crmotos.com/wp-content/uploads/2021/06/ktm-250-exc-SIX-DAYS-2024-3.jpg) ; /* Ruta de la imagen de fondo */
-    background-size: cover; /* Cubre todo el contenedor */
-    background-position: center center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    
-    /* Mantiene el color de fondo para la fusión con la imagen */
-    background-color: var(--color-gris-interfaz); 
-    
-   
-    background-blend-mode: multiply; 
-    
-    border-radius: 8px;
-    padding: 30px;
-    box-shadow: var(--glow-sombra); 
-    border: 1px solid var(--color-acento-neon);
-}
-
-        
-        /*  ENCABEZADO*/
-       
+        /* ENCABEZADO */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -82,56 +67,83 @@
             letter-spacing: 2px;
             text-shadow: 0 0 10px var(--color-acento-neon);
             margin: 0 0 10px 0;
+            animation: neonFlicker 2s infinite alternate ease-in-out;
         }
 
         header p {
             font-size: 1em;
             opacity: 0.9;
             margin: 0;
+            animation: fadeInText 1.5s ease 0.8s both;
         }
-        
-        /* ESTILOS DE LISTA DE LAVORAORTIO */
 
-    .laboratorios-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        justify-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 20px 0 30px 0;
-    }
+        /* LISTA DE LABORATORIOS */
+        .laboratorios-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            justify-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 30px 0;
+        }
 
-    .laboratorios-list li {
-        width: 100%;
-        max-width: 220px;
-    }
+        .laboratorios-list li {
+            width: 100%;
+            max-width: 220px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUpFade 0.8s ease forwards;
+        }
 
-    .laboratorios-list a {
-        text-decoration: none;
-        color: var(--color-texto-principal);
-        display: block;
-        background-color: #23313f;
-        border: 1px solid var(--color-acento-neon);
-        border-radius: 6px;
-        padding: 14px 0;
-        font-size: 1.05em;
-        font-weight: 600;
-        text-align: center;
-        transition: all 0.3s ease-in-out;
-        box-shadow: var(--glow-sombra);
-    }
+        /* ANIMACIÓN ESCALONADA */
+        .laboratorios-list li:nth-child(1) { animation-delay: 0.3s; }
+        .laboratorios-list li:nth-child(2) { animation-delay: 0.45s; }
+        .laboratorios-list li:nth-child(3) { animation-delay: 0.6s; }
+        .laboratorios-list li:nth-child(4) { animation-delay: 0.75s; }
+        .laboratorios-list li:nth-child(5) { animation-delay: 0.9s; }
+        .laboratorios-list li:nth-child(6) { animation-delay: 1.05s; }
+        .laboratorios-list li:nth-child(7) { animation-delay: 1.2s; }
+        .laboratorios-list li:nth-child(8) { animation-delay: 1.35s; }
+        .laboratorios-list li:nth-child(9) { animation-delay: 1.5s; }
 
-    .laboratorios-list a:hover {
-        color: var(--color-acento-neon);
-        background-color: var(--color-hover-item);
-        box-shadow: var(--glow-sombra-hover);
-        transform: translateY(-2px) scale(1.03);
-    }
+        .laboratorios-list a {
+            text-decoration: none;
+            color: var(--color-texto-principal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #23313f;
+            border: 1px solid var(--color-acento-neon);
+            border-radius: 6px;
+            padding: 14px 0;
+            font-size: 1.05em;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            box-shadow: var(--glow-sombra);
+        }
 
-       
-        /*  PIE DE PÁGINA */
-        
+        .laboratorios-list a i {
+            color: var(--color-acento-neon);
+            text-shadow: 0 0 6px var(--color-acento-neon);
+            transition: transform 0.25s ease, text-shadow 0.25s ease;
+        }
+
+        .laboratorios-list a:hover {
+            color: var(--color-acento-neon);
+            background-color: var(--color-hover-item);
+            box-shadow: var(--glow-sombra-hover);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .laboratorios-list a:hover i {
+            transform: scale(1.25);
+            text-shadow: 0 0 10px var(--color-acento-neon);
+        }
+
+        /* PIE DE PÁGINA */
         footer {
             text-align: center;
             padding-top: 15px;
@@ -139,6 +151,7 @@
             border-top: 1px dashed #35475e;
             margin-top: 25px;
             opacity: 0.85;
+            animation: fadeInText 1.8s ease 1.8s both;
         }
 
         footer p {
@@ -147,9 +160,28 @@
             text-shadow: 0 0 4px #00ff00;
         }
 
-        
-        /* 📱 RESPONSIVE */
-        
+        /* KEYFRAMES */
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes neonFlicker {
+            0%, 100% { text-shadow: 0 0 6px #00ffff, 0 0 12px #00ffff, 0 0 20px #00ffff; }
+            50% { text-shadow: 0 0 3px #00ffff, 0 0 8px #00ffff, 0 0 14px #00ffff; }
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 480px) {
             h1 {
                 font-size: 1.8em;
@@ -171,25 +203,26 @@
     <div class="site-container">
         <header>
             <h1>[ ACCESO A DATOS ]</h1>
-            <p> Entregables: Programación para Internet - II-51 </p>
+            <p>Entregables: Programación para Internet - II-51</p>
         </header>
 
         <main>
             <ul class="laboratorios-list">
-                <li><a href="Lab01/index.html">> Laboratorio 01</a></li>
-                <li><a href="Lab02/index.html">> Laboratorio 02</a></li>
-                <li><a href="Lab03/index.html">> Laboratorio 03</a></li>
-                <li><a href="Lab04/index.html">> Laboratorio 04</a></li>
-                <li><a href="Lab05/index.html">> Laboratorio 05</a></li>
-                <li><a href="Lab06/index.html">> Laboratorio 06</a></li>
-                <li><a href="Lab07/index.html">> Laboratorio 07</a></li>
-                <li><a href="investigacion01/index.html">> Investigación 01</a></li>
-                <li><a href="Proyecto01/index.html">> Proyecto 01</a></li>
-                
-                
+                <li><a href="Lab01/index.html"><i class="fa-solid fa-puzzle-piece"></i> Laboratorio 01</a></li>
+                <li><a href="Lab02/index.html"><i class="fa-solid fa-gear"></i> Laboratorio 02</a></li>
+                <li><a href="Lab03/index.html"><i class="fa-solid fa-brain"></i> Laboratorio 03</a></li>
+                <li><a href="Lab04/index.html"><i class="fa-solid fa-code"></i> Laboratorio 04</a></li>
+                <li><a href="Lab05/index.html"><i class="fa-solid fa-globe"></i> Laboratorio 05</a></li>
+                <li><a href="Lab06/index.html"><i class="fa-solid fa-database"></i> Laboratorio 06</a></li>
+                <li><a href="Lab07/index.html"><i class="fa-solid fa-rocket"></i> Laboratorio 07</a></li>
+                <li><a href="investigacion01/index.html"><i class="fa-solid fa-book-open"></i> Investigación 01</a></li>
+                <li><a href="Proyecto01/index.html"><i class="fa-solid fa-flag-checkered"></i> Proyecto 01</a></li>
             </ul>
         </main>
 
         <footer>
-            <p> &copy; 2025 |  David Salazar</p>
+            <p>&copy; 2025 | David Salazar</p>
         </footer>
+    </div>
+</body>
+</html>
