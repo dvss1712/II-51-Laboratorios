@@ -42,3 +42,13 @@
     color: purple !important;
   }
 }
+
+#title:hover {
+  color: orange;
+  animation: bounce 2s infinite;
+}
+ 
+:root {
+  --animate-duration: 800ms;
+  --animate-delay: 0.9s;
+}
