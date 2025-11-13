@@ -26,3 +26,20 @@ $("#quitarClase").click(function () {
 $("#mostrarOcultar").click(function () {
   $("#elementoOculto").toggle();
 });
+
+ let contador = 0;
+  const contadorElemento = document.getElementById("contador");
+
+  const modificarContador = (cambio) => {
+    contador += cambio;
+    contadorElemento.textContent = contador;
+  };
+    function alternarTema() {	
+      temaoscuro = !temaooscuro;
+      if (temaooscuro) {  
+        document.querySelector("button").innerHTML = '<i class="fa-solid fa-sun me-2"></i> Cambiar a modo claro';	
+      } else {  
+        document.querySelector("button").innerHTML = '<i class="fa-solid fa-moon me-2"></i> Cambiar a modo oscuro';	
+      }
+document.getElementById("contenido").classList.toggle("oscuro");	
+}	
