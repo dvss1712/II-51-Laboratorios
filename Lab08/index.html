@@ -12,6 +12,29 @@
       <ul id="lista" class="list-group">
         <li class="list-group-item">Curso 1: Introducción a la Programación</li>
       </ul>
+
+  
+        <form id="curso-form">
+    <h2 id="form-title">Registrar curso</h2>
+
+    <input type="hidden" id="id" />
+
+    <label>Código</label>
+    <input type="text" id="codigo" required />
+
+    <label>Nombre del curso</label>
+    <input type="text" id="nombre" required />
+
+    <label>Créditos</label>
+    <input type="number" id="creditos" required min="1" max="10" />
+
+    <button type="submit" id="btn-save">Guardar</button>
+    <button type="button" id="btn-cancel" style="display:none;">Cancelar</button>
+
+    <div id="status"></div>
+  </form>
+
+      
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script type = "module" src =./app.js></script>
