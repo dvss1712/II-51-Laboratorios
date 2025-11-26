@@ -9,7 +9,6 @@ let listaProfesoresBody = document.getElementById("lista-profesores-body");
 
 // Eventos
 //=========================
-// 1. Manejo del Submit del formulario (CREATE)
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const nombre_completo = inputNombre.value.trim();
@@ -20,7 +19,6 @@ form.addEventListener('submit', async (e) => {
     form.reset();
 });
 
-// 2. Manejo de clics en la lista para el botón Eliminar (DELETE)
 listaProfesoresBody.addEventListener("click", async (e) => {
     if (e.target.classList.contains("btn-delete")) {
         const id = e.target.getAttribute("data-id");
@@ -73,5 +71,4 @@ async function eliminarProfesor(id) {
     }
 }
 
-// Inicia la carga de datos al cargar la página
 cargarProfesores();

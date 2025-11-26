@@ -9,7 +9,6 @@ let listaCursosBody = document.getElementById("lista-cursos-body");
 
 // Eventos
 //=========================
-// 1. Manejo del Submit del formulario (CREATE)
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const profesor_asignado = inputProfesorAsignado.value.trim();
@@ -20,7 +19,6 @@ form.addEventListener('submit', async (e) => {
     form.reset();
 });
 
-// 2. Manejo de clics en la lista para el botón Eliminar (DELETE)
 listaCursosBody.addEventListener("click", async (e) => {
     if (e.target.classList.contains("btn-delete")) {
         const id = e.target.getAttribute("data-id");
@@ -55,7 +53,7 @@ async function cargarcursos() {
 
 // CRUD - CREATE (Insertar)
 async function crearcursos(profesor_asignado, nombre, creditos) {
-    const curso = { profesor_asignado, nombre, creditos };
+    const curso = { profesor_asignado, nombre, creditos }; 
     let { error } = await supabase.from("cursos").insert([curso])
 
     if (error) {
@@ -72,5 +70,4 @@ async function eliminarcursos(id) {
     }
 }
 
-// Inicia la carga de datos al cargar la página
 cargarcursos();
