@@ -1,22 +1,31 @@
 import { supabase } from "./supabaseClient.js";
 
 const form = document.getElementById("curso-form");
+
+const id = document.getElementById("id");
 const profesor = document.getElementById("profesor_asignado");
 const nombre = document.getElementById("nombre");
 const creditos = document.getElementById("creditos");
+
 const tabla = document.getElementById("lista-cursos-body");
 
 if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    await supabase.from("cursos").insert([
+    const { error } = await supabase.from("cursos").insert([
       {
+        id: id.value,
         profesor_asignado: profesor.value,
         nombre: nombre.value,
-        creditos: parseInt(creditos.value, 10),
-      },
+        creditos: parseInt(creditos.value, 10)
+      }
     ]);
+
+    if (error) {
+      alert("Error: " + error.message);
+      return;
+    }
 
     form.reset();
     cargar();
@@ -31,6 +40,7 @@ async function cargar() {
   data.forEach((c) => {
     tabla.innerHTML += `
       <tr>
+        <td>${c.id}</td>
         <td>${c.profesor_asignado}</td>
         <td>${c.nombre}</td>
         <td>${c.creditos}</td>
