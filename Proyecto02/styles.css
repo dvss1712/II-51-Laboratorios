@@ -297,7 +297,7 @@ footer {
 .login-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;  /* Baja un poco el login para que no toque el header */
+    align-items: flex-start; 
     padding: 60px 20px;
     min-height: 70vh;
 }
