@@ -2,17 +2,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Proyecto 02</title>
+    <title>Proyecto 02 - Sistema Académico</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
 
-<header>
-    <h1>Gestión Académica - Proyecto 02</h1>
+<header class="hero-header">
+    <h1>Sistema Académico</h1>
+    <p class="subtitle">Gestión de cursos, estudiantes y profesores</p>
 </header>
 
-<nav>
+<nav class="main-nav">
     <ul>
         <li><a href="Pages/login.html">Iniciar Sesión</a></li>
         <li><a href="Pages/cursos.html">Cursos</a></li>
@@ -21,10 +22,21 @@
     </ul>
 </nav>
 
-<main>
-    <h2>Bienvenido</h2>
-    <p>Seleccione una opción del menú.</p>
+<main class="home-container">
+    <section class="welcome-box">
+        <h2>Bienvenido</h2>
+        <p>
+            Este sistema le permite administrar información académica, incluyendo cursos,
+            estudiantes y profesores. Utilice el menú superior para navegar.
+        </p>
+
+        <a class="btn-primary" href="Pages/login.html">Comenzar</a>
+    </section>
 </main>
+
+<footer>
+    <p>Proyecto 02 – Programación de Internet | Universidad</p>
+</footer>
 
 </body>
 </html>

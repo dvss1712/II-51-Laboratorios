@@ -8,7 +8,9 @@
 
 <body>
 
-<header><h1>Gestión de Cursos</h1></header>
+<header>
+    <h1>Gestión de Cursos</h1>
+</header>
 
 <main>
 
@@ -16,6 +18,10 @@
     <h2>Agregar Curso</h2>
 
     <form id="curso-form">
+
+        <label for="id">ID del Curso:</label>
+        <input type="text" id="id" required>
+
         <label for="profesor_asignado">Profesor Asignado:</label>
         <input type="text" id="profesor_asignado" required>
 
@@ -35,6 +41,7 @@
     <table>
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Profesor</th>
                 <th>Curso</th>
                 <th>Créditos</th>
