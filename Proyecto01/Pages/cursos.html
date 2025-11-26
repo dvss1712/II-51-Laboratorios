@@ -1,58 +1,35 @@
 <!DOCTYPE html>
-<html lang="es"> 
-<head>
-    <meta charset="UTF-8"> 
-    <title>Gestión de Cursos</title> 
-</head>
+<html lang="es"> <head>
+    <meta charset="UTF-8"> <title> Cursos</title> </head>
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
     
     <header style="background-color: #333; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;">
-        <h1 style="margin: 0;">Cursos</h1> 
-        <nav>
-            <a href="estudiantes.html" style="color: white; text-decoration: none; margin-left: 15px;">Estudiantes</a> 
-            <a href="cursos.html" style="color: white; text-decoration: none; margin-left: 15px; font-weight: bold; border-bottom: 2px solid white;">Cursos</a> 
-            <a href="profesores.html" style="color: white; text-decoration: none; margin-left: 15px;">Profesores</a> 
-            <a href="login.html" style="color: #ffdd00; text-decoration: none; margin-left: 25px;">[Volver a Login]</a> 
-        </nav>
+        <h1 style="margin: 0;">Cursos</h1> <nav>
+            <a href="estudiantes.html" style="color: white; text-decoration: none; margin-left: 15px;">Estudiantes</a> <a href="cursos.html" style="color: white; text-decoration: none; margin-left: 15px; font-weight: bold; border-bottom: 2px solid white;">Cursos</a> <a href="profesores.html" style="color: white; text-decoration: none; margin-left: 15px;">Profesores</a> <a href="login.html" style="color: #ffdd00; text-decoration: none; margin-left: 25px;">[Volver a Login]</a> </nav>
     </header>
 
     <main style="padding: 20px;">
-        
-        <section style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px;">
-            <h2 style="color: #007bff; padding-bottom: 10px; margin-top: 0; text-align: center;">Registrar Curso</h2>
-            <form id="curso-form" style="display: grid; gap: 10px; max-width: 400px; margin: 0 auto;"> 
-                <input type="hidden" id="id" />
-
-                <label for="profesor_asignado">Profesor Asignado:</label>
-                <input type="text" id="profesor_asignado" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
-
-                <label for="nombre">Nombre del Curso:</label>
-                <input type="text" id="nombre" required style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
-
-                <label for="creditos">Créditos:</label>
-                <input type="number" id="creditos" required min="1" max="5" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
-
-                <button type="submit" id="btn-save" style="padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;">Guardar Curso</button>
-            </form>
-        </section>
         <section style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <h2 style="color: #ff8800; padding-bottom: 10px; margin-top: 0;">Listado de Cursos (Supabase)</h2>
+            <h2 style="color: #ff8800; padding-bottom: 10px; margin-top: 0;">Listado de Cursos </h2>
             <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
                 <thead style="background-color: #e9ecef;">
                     <tr>
-                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Profesor Asignado</th> 
-                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Nombre del Curso</th> 
-                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Créditos</th> 
-                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Acciones</th>
-                    </tr>
+                        <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">ID Curso</th> <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Nombre del Curso</th> <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Créditos</th> <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Profesor Asignado</th> </tr>
                 </thead>
-                <tbody id="lista-cursos-body">
-                    </tbody>
+                <tbody>
+                    <tr style="background-color: #f9f9f9;"> <td style="border: 1px solid #ddd; padding: 12px;">857425</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Psicologia</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">4</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Marco Juarez</td>
+                    </tr>
+                    <tr> <td style="border: 1px solid #ddd; padding: 12px;">415826</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Economía</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">4</td>
+                        <td style="border: 1px solid #ddd; padding: 12px;">Rebeca Rosales</td>
+                    </tr>
+                </tbody>
             </table>
         </section>
     </main>
-
-    <script type="module" src="./js/supabaseClient.js"></script>
-    <script type="module" src="./js/app_cursos.js"></script>
 </body>
 </html>
