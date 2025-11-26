@@ -1,90 +1,49 @@
 import { supabase } from "./supabaseClient.js";
 
-// Elementos del formulario
-const formCursos = document.getElementById("curso-form");
-const inputProfesorAsignado = document.getElementById("profesor_asignado");
-const inputNombreCurso = document.getElementById("nombre");
-const inputCreditos = document.getElementById("creditos");
+const form = document.getElementById("curso-form");
+const profesor = document.getElementById("profesor_asignado");
+const nombre = document.getElementById("nombre");
+const creditos = document.getElementById("creditos");
+const tabla = document.getElementById("lista-cursos-body");
 
-// Tabla de cursos
-const listaCursosBody = document.getElementById("lista-cursos-body");
-
-// Evento para insertar curso
-if (formCursos) {
-  formCursos.addEventListener("submit", async (e) => {
+if (form) {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const profesor_asignado = inputProfesorAsignado.value.trim();
-    const nombre = inputNombreCurso.value.trim();
-    const creditos = parseInt(inputCreditos.value, 10);
+    await supabase.from("cursos").insert([
+      {
+        profesor_asignado: profesor.value,
+        nombre: nombre.value,
+        creditos: parseInt(creditos.value, 10),
+      },
+    ]);
 
-    if (!profesor_asignado || !nombre || isNaN(creditos)) {
-      alert("Complete todos los campos.");
-      return;
-    }
-
-    const { error } = await supabase
-      .from("cursos")
-      .insert([{ profesor_asignado, nombre, creditos }]);
-
-    if (error) {
-      console.error("Error al insertar:", error);
-      alert("Error al guardar el curso.");
-      return;
-    }
-
-    formCursos.reset();
-    cargarCursos();
+    form.reset();
+    cargar();
   });
 }
 
-// Cargar cursos
-async function cargarCursos() {
-  if (!listaCursosBody) return;
+async function cargar() {
+  const { data } = await supabase.from("cursos").select("*");
 
-  const { data: cursos, error } = await supabase
-    .from("cursos")
-    .select("*")
-    .order("nombre", { ascending: true });
+  tabla.innerHTML = "";
 
-  if (error) {
-    console.error("Error al cargar cursos:", error);
-    return;
-  }
-
-  listaCursosBody.innerHTML = "";
-
-  cursos.forEach((curso) => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${curso.profesor_asignado}</td>
-      <td>${curso.nombre}</td>
-      <td>${curso.creditos}</td>
-      <td>
-        <button class="btn-delete-curso" data-id="${curso.id}">
-          Eliminar
-        </button>
-      </td>
-    `;
-
-    listaCursosBody.appendChild(tr);
+  data.forEach((c) => {
+    tabla.innerHTML += `
+      <tr>
+        <td>${c.profesor_asignado}</td>
+        <td>${c.nombre}</td>
+        <td>${c.creditos}</td>
+        <td><button class="btn-delete" data-id="${c.id}">Eliminar</button></td>
+      </tr>`;
   });
 
-  document.querySelectorAll(".btn-delete-curso").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const id = btn.getAttribute("data-id");
-
-      const { error } = await supabase.from("cursos").delete().eq("id", id);
-
-      if (error) {
-        alert("No se pudo eliminar.");
-        return;
-      }
-
-      cargarCursos();
-    });
+  document.querySelectorAll(".btn-delete").forEach((btn) => {
+    btn.onclick = async () => {
+      await supabase.from("cursos").delete().eq("id", btn.dataset.id);
+      cargar();
+    };
   });
 }
 
-cargarCursos();
+cargar();
