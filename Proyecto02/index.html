@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Proyecto 02 - Sistema Académico</title>
+    <title>Sistema Académico - Proyecto 02</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -15,28 +16,21 @@
 
 <nav class="main-nav">
     <ul>
-        <li><a href="Pages/login.html">Iniciar Sesión</a></li>
-        <li><a href="Pages/cursos.html">Cursos</a></li>
-        <li><a href="Pages/estudiantes.html">Estudiantes</a></li>
-        <li><a href="Pages/profesores.html">Profesores</a></li>
+        <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li><a href="Pages/cursos.html"><i class="fa-solid fa-book"></i> Cursos</a></li>
+        <li><a href="Pages/estudiantes.html"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a></li>
+        <li><a href="Pages/profesores.html"><i class="fa-solid fa-chalkboard-user"></i> Profesores</a></li>
+        <li><a href="Pages/login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
     </ul>
 </nav>
 
 <main class="home-container">
     <section class="welcome-box">
         <h2>Bienvenido</h2>
-        <p>
-            Este sistema le permite administrar información académica, incluyendo cursos,
-            estudiantes y profesores. Utilice el menú superior para navegar.
-        </p>
-
-        <a class="btn-primary" href="Pages/login.html">Comenzar</a>
+        <p>Administre información académica desde un solo lugar.</p>
+        <a class="btn-primary" href="Pages/login.html">Iniciar Sesión</a>
     </section>
 </main>
-
-<footer>
-    <p>Proyecto 02 – Programación de Internet | Universidad</p>
-</footer>
 
 </body>
 </html>

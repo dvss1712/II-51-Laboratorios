@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Profesores</title>
     <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -12,11 +13,11 @@
 
 <nav class="main-nav">
     <ul>
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="cursos.html">Cursos</a></li>
-        <li><a href="estudiantes.html">Estudiantes</a></li>
-        <li><a href="profesores.html">Profesores</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="../index.html"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li><a href="cursos.html"><i class="fa-solid fa-book"></i> Cursos</a></li>
+        <li><a href="estudiantes.html"><i class="fa-solid fa-user-graduate"></i> Estudiantes</a></li>
+        <li><a href="profesores.html" class="active"><i class="fa-solid fa-chalkboard-user"></i> Profesores</a></li>
+        <li><a href="login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
     </ul>
 </nav>
 
@@ -27,17 +28,29 @@
 
     <form id="profesor-form">
 
-        <label for="id">ID del Profesor:</label>
-        <input type="text" id="id" required>
+        <div class="input-modern">
+            <label>ID del Profesor</label>
+            <input type="text" id="id" required>
+            <i class="fa-solid fa-id-card-clip"></i>
+        </div>
 
-        <label for="nombreCompleto">Nombre Completo:</label>
-        <input type="text" id="nombreCompleto" required>
+        <div class="input-modern">
+            <label>Nombre Completo</label>
+            <input type="text" id="nombreCompleto" required>
+            <i class="fa-solid fa-user"></i>
+        </div>
 
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" id="email" required>
+        <div class="input-modern">
+            <label>Email</label>
+            <input type="email" id="email" required>
+            <i class="fa-solid fa-envelope"></i>
+        </div>
 
-        <label for="departamento">Departamento:</label>
-        <input type="text" id="departamento" required>
+        <div class="input-modern">
+            <label>Departamento</label>
+            <input type="text" id="departamento" required>
+            <i class="fa-solid fa-building"></i>
+        </div>
 
         <button type="submit">Guardar</button>
     </form>
@@ -56,7 +69,6 @@
                 <th>Acciones</th>
             </tr>
         </thead>
-
         <tbody id="lista-profesores-body"></tbody>
     </table>
 </section>
