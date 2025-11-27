@@ -40,7 +40,7 @@ header.hero-header .subtitle {
 }
 
 /* ============================================================
-   NAVBAR CON ICONOS
+   NAVBAR 
    ============================================================ */
 .main-nav {
     background: #0d47a1;
@@ -139,7 +139,7 @@ header.hero-header .subtitle {
     text-align: center;
 }
 
-/* Input Group Moderno */
+
 .input-modern {
     position: relative;
     margin-bottom: 25px;
@@ -181,7 +181,7 @@ header.hero-header .subtitle {
     color: #1565c0;
 }
 
-/* Botón moderno */
+
 .form-container button {
     width: 100%;
     padding: 14px;

@@ -10,7 +10,7 @@ const creditos = document.getElementById("creditos");
 const tabla = document.getElementById("lista-cursos-body");
 
 // ==========================
-//   GUARDAR
+//   INSERTAR
 // ==========================
 if (form) {
   form.addEventListener("submit", async (e) => {

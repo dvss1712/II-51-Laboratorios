@@ -1,26 +1,23 @@
 classDiagram
-   
+    class Profesor {
+        +uuid id
+        +string nombre_completo
+        +string email
+        +string departamento
+    }
 
     class Estudiante {
-        - idEstudiante: String
-        - nombreCompleto: String
-        - email: String
-        - carrera: String
+        +uuid id
+        +string nombre_completo
+        +string email
     }
-    
+
     class Curso {
-        - idCurso: String
-        - nombreCurso: String
-        - creditos: int
+        +uuid id
+        +string profesor_asignado
+        +string nombre
+        +int creditos
     }
-    
-    class Profesor {
-        - idProfesor: String
-        - nombreCompleto: String
-        - departamento: String
-        - email: String
-    }
-    
-    %%relaciones
-    Profesor "1" -- "*" Curso : imparte
-    Curso "*" -- "*" Estudiante : se_matricula_en
+
+    Profesor "1" --> "0..*" Curso : imparte
+    Estudiante "0..*" --> "0..*" Curso : matricula
