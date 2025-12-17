@@ -1,69 +1,95 @@
-let cursos = [];
-let editando = false;
-let indexEdit = -1;
+import { supabase } from "./supabaseClient.js";
 
-function guardar() {
-  const c = {
-    codigo: codigo.value,
-    nombre: nombre.value,
-    creditos: creditos.value
-  };
+const form = document.getElementById("curso-form");
 
-  if (editando) {
-    cursos[indexEdit] = c;
-    editando = false;
-    indexEdit = -1;
-    titulo.textContent = "Registrar Curso";
-  } else {
-    cursos.push(c);
-  }
+const id = document.getElementById("id");
+const profesor = document.getElementById("profesor_asignado");
+const nombre = document.getElementById("nombre");
+const creditos = document.getElementById("creditos");
 
-  limpiar();
-  cargar();
+const tabla = document.getElementById("lista-cursos-body");
+
+// ==========================
+//   INSERTAR
+// ==========================
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const datos = {
+      id: id.value.trim(),
+      profesor_asignado: profesor.value.trim(),
+      nombre: nombre.value.trim(),
+      creditos: parseInt(creditos.value, 10)
+    };
+
+    const { error } = await supabase.from("cursos").insert([datos]);
+
+    if (error) {
+      alert("❌ Error al guardar: " + error.message);
+      console.error(error);
+      return;
+    }
+
+    form.reset();
+    cargar();
+  });
 }
 
-function cargar() {
+// ==========================
+//   CARGAR TABLA
+// ==========================
+async function cargar() {
+  const { data, error } = await supabase
+    .from("cursos")
+    .select("*")
+    .order("id", { ascending: true });
+
+  if (error) {
+    console.error("❌ Error al cargar cursos:", error);
+    return;
+  }
+
   tabla.innerHTML = "";
-  cursos.forEach((c, i) => {
+
+  data.forEach((c) => {
     tabla.innerHTML += `
       <tr>
-        <td>${c.codigo}</td>
+        <td>${c.id}</td>
+        <td>${c.profesor_asignado}</td>
         <td>${c.nombre}</td>
         <td>${c.creditos}</td>
         <td>
-          <button onclick="editar(${i})">✏️</button>
-          <button onclick="eliminar(${i})">🗑️</button>
+            <button class="btn-delete" data-id="${c.id}">Eliminar</button>
         </td>
       </tr>
     `;
   });
+
+  agregarEventosEliminar();
 }
 
-function editar(i) {
-  const c = cursos[i];
-  codigo.value = c.codigo;
-  nombre.value = c.nombre;
-  creditos.value = c.creditos;
-  editando = true;
-  indexEdit = i;
-  titulo.textContent = "Editar Curso";
+// ==========================
+//   ELIMINAR
+// ==========================
+function agregarEventosEliminar() {
+  document.querySelectorAll(".btn-delete").forEach((btn) => {
+    btn.onclick = async () => {
+      const idCurso = btn.dataset.id;
+
+      const { error } = await supabase
+        .from("cursos")
+        .delete()
+        .eq("id", idCurso);
+
+      if (error) {
+        alert("❌ Error al eliminar: " + error.message);
+        return;
+      }
+
+      cargar();
+    };
+  });
 }
 
-function eliminar(i) {
-  if (confirm("¿Eliminar curso?")) {
-    cursos.splice(i, 1);
-    cargar();
-  }
-}
-
-function limpiar() {
-  codigo.value = "";
-  nombre.value = "";
-  creditos.value = "";
-}
-
-function cancelar() {
-  limpiar();
-  editando = false;
-  titulo.textContent = "Registrar Curso";
-}
+cargar();

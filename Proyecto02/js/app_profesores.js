@@ -1,69 +1,59 @@
-let profesores = [];
-let editando = false;
-let indexEdit = -1;
+import { supabase } from "./supabaseClient.js";
 
-function guardar() {
-  const p = {
-    id: id.value,
-    nombre: nombre.value,
-    email: email.value
-  };
+const form = document.getElementById("profesor-form");
 
-  if (editando) {
-    profesores[indexEdit] = p;
-    editando = false;
-    indexEdit = -1;
-    titulo.textContent = "Registrar Profesor";
-  } else {
-    profesores.push(p);
-  }
+const id = document.getElementById("id");
+const nombre = document.getElementById("nombreCompleto");
+const email = document.getElementById("email");
+const departamento = document.getElementById("departamento");
 
-  limpiar();
-  cargar();
-}
+const tabla = document.getElementById("lista-profesores-body");
 
-function cargar() {
-  tabla.innerHTML = "";
-  profesores.forEach((p, i) => {
-    tabla.innerHTML += `
-      <tr>
-        <td>${p.id}</td>
-        <td>${p.nombre}</td>
-        <td>${p.email}</td>
-        <td>
-          <button onclick="editar(${i})">✏️</button>
-          <button onclick="eliminar(${i})">🗑️</button>
-        </td>
-      </tr>
-    `;
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const { error } = await supabase.from("profesores").insert([
+      {
+        id: id.value,
+        nombre_completo: nombre.value,
+        email: email.value,
+        departamento: departamento.value
+      }
+    ]);
+
+    if (error) {
+      alert("Error: " + error.message);
+      return;
+    }
+
+    form.reset();
+    cargar();
   });
 }
 
-function editar(i) {
-  const p = profesores[i];
-  id.value = p.id;
-  nombre.value = p.nombre;
-  email.value = p.email;
-  editando = true;
-  indexEdit = i;
-  titulo.textContent = "Editar Profesor";
+async function cargar() {
+  const { data } = await supabase.from("profesores").select("*");
+
+  tabla.innerHTML = "";
+
+  data.forEach((p) => {
+    tabla.innerHTML += `
+      <tr>
+        <td>${p.id}</td>
+        <td>${p.nombre_completo}</td>
+        <td>${p.departamento}</td>
+        <td>${p.email}</td>
+        <td><button class="btn-delete" data-id="${p.id}">Eliminar</button></td>
+      </tr>`;
+  });
+
+  document.querySelectorAll(".btn-delete").forEach((btn) => {
+    btn.onclick = async () => {
+      await supabase.from("profesores").delete().eq("id", btn.dataset.id);
+      cargar();
+    };
+  });
 }
 
-function eliminar(i) {
-  if (confirm("¿Eliminar profesor?")) {
-    profesores.splice(i, 1);
-    cargar();
-  }
-}
-
-function limpiar() {
-  id.value = "";
-  nombre.value = "";
-  email.value = "";
-}
-
-function cancelar() {
-  limpiar();
-  editando = false;
-  titulo.textContent = "Registrar Profesor";
-}
+cargar();
