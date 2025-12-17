@@ -18,14 +18,13 @@ tabla.addEventListener("click", async (e) => {
   const btn = e.target.closest("button");
   if (!btn) return;
 
-  
+
 // ELIMINAR
 if (btn.classList.contains("btn-delete")) {
-  const idAttr = btn.getAttribute("data-id");
-  const id = Number(idAttr); // <-- Asegura tipo entero
+  const id = btn.getAttribute("data-id"); // <-- mantener como texto
   console.log("Eliminar curso id:", id);
 
-  if (Number.isNaN(id)) {
+  if (!id) {
     alert("ID inválido para eliminar.");
     return;
   }
@@ -34,20 +33,19 @@ if (btn.classList.contains("btn-delete")) {
     const { data, error } = await supabase
       .from("cursos")
       .delete()
-      .eq("id", id)
-      .select(); // <-- devuelve las filas afectadas, útil para verificar
+      .eq("id", id)   // comparación con texto
+      .select();      // opcional: devuelve filas eliminadas
 
     if (error) {
       console.error("Error al eliminar curso:", error);
       alert("Error al eliminar: " + error.message);
     } else {
-      const count = Array.isArray(data) ? data.length : 0;
-      console.log(`Cursos eliminados: ${count}`);
-      if (count === 0) alert("No se encontró el curso para eliminar (revisa el ID o las políticas RLS).");
+      console.log("Curso eliminado:", data);
       cargar();
     }
   }
 }
+
 
 
   // EDITAR
