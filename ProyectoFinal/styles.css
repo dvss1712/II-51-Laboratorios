@@ -1,6 +1,18 @@
 /* ============================================================
    RESET GENERAL
    ============================================================ */
+:root {
+    --primary-color: #1565c0;
+    --secondary-color: #0d47a1;
+    --accent-color: #1e88e5;
+    --light-bg: #f5f7fa;
+    --white: #ffffff;
+    --text-color: #333;
+    --shadow: rgba(0,0,0,0.1);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,73 +21,111 @@
 }
 
 body {
-    background: #f5f7fa;
-    color: #333;
+    background: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
 /* ============================================================
    HEADER GENERAL
    ============================================================ */
 header {
-    background: #1e88e5;
-    padding: 25px 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    padding: 40px 20px;
     text-align: center;
-    color: white;
-    box-shadow: 0 2px 8px #0003;
+    color: var(--white);
+    box-shadow: 0 4px 12px var(--shadow);
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
 }
 
-header.hero-header {
-    background: linear-gradient(135deg, #1565c0, #1e88e5);
-    padding: 60px 20px;
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+    opacity: 0.1;
 }
 
-header.hero-header h1 {
-    font-size: 42px;
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-header.hero-header .subtitle {
-    font-size: 18px;
+header p {
+    font-size: 1.2rem;
     opacity: 0.9;
+    position: relative;
+    z-index: 1;
+    margin-top: 10px;
 }
 
 /* ============================================================
    NAVBAR 
    ============================================================ */
 .main-nav {
-    background: #0d47a1;
-    padding: 12px 0;
-    margin-bottom: 25px;
+    background: var(--secondary-color);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 .main-nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .main-nav a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 6px;
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.12);
-    transition: all 0.25s;
-    font-size: 17px;
+    background: rgba(255,255,255,0.1);
+    transition: var(--transition);
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.main-nav a:hover::before {
+    left: 100%;
 }
 
 .main-nav a:hover {
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
 .main-nav a.active {
-    background: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.3);
     font-weight: bold;
-    border-bottom: 3px solid #fff;
+    box-shadow: 0 2px 8px var(--shadow);
 }
 
 /* ============================================================
@@ -84,21 +134,33 @@ header.hero-header .subtitle {
 .home-container {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 60vh;
     padding: 40px 20px;
 }
 
 .welcome-box {
-    background: white;
-    padding: 35px;
-    max-width: 600px;
-    border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    background: var(--white);
+    padding: 40px;
+    max-width: 700px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px var(--shadow);
     text-align: center;
+    animation: fadeInUp 0.6s ease;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .welcome-box h2 {
-    margin-bottom: 15px;
-    color: #1565c0;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.welcome-box p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
 }
 
 .btn-primary {
@@ -123,81 +185,118 @@ header.hero-header .subtitle {
    ============================================================ */
 
 .form-container {
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 15px;
-    max-width: 650px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    max-width: 700px;
     margin: 30px auto;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    animation: fadeIn 0.4s ease;
+    box-shadow: 0 8px 32px var(--shadow);
+    animation: fadeInUp 0.6s ease;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .form-container h2 {
-    font-size: 26px;
-    color: #1565c0;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
     text-align: center;
+    font-weight: 600;
 }
 
 
 .input-modern {
     position: relative;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-.input-modern input {
+.input-modern input, .input-modern select {
     width: 100%;
-    padding: 14px 45px 14px 15px;
-    border-radius: 10px;
-    border: 2px solid #d0d7e2;
-    font-size: 16px;
-    transition: 0.25s;
-    background: #f7f9fc;
+    padding: 16px 50px 16px 16px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: #fafafa;
+    outline: none;
 }
 
-.input-modern input:focus {
-    outline: none;
-    border-color: #1565c0;
-    background: #fff;
-    box-shadow: 0 0 8px rgba(21,101,192,0.25);
+.input-modern input:focus, .input-modern select:focus {
+    border-color: var(--primary-color);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.1);
+    transform: translateY(-1px);
 }
 
 .input-modern label {
     position: absolute;
+    top: -8px;
+    left: 16px;
+    background: var(--white);
+    padding: 0 8px;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.input-modern input:focus + label, .input-modern input:not(:placeholder-shown) + label {
     top: -10px;
-    left: 12px;
-    background: white;
-    padding: 0 6px;
-    font-size: 13px;
-    color: #1565c0;
-    font-weight: bold;
+    font-size: 0.8rem;
 }
 
 .input-modern i {
     position: absolute;
-    right: 15px;
-    top: 14px;
-    font-size: 18px;
-    color: #1565c0;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.input-modern input:focus ~ i {
+    color: var(--secondary-color);
 }
 
 
-.form-container button {
+.form-container button, .btn-primary {
     width: 100%;
-    padding: 14px;
-    background: #1565c0;
-    color: white;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
     border: none;
-    border-radius: 10px;
-    font-size: 17px;
-    font-weight: bold;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-.form-container button:hover {
-    background: #0d47a1;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+.form-container button::before, .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.form-container button:hover, .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(21, 101, 192, 0.4);
+}
+
+.form-container button:hover::before, .btn-primary:hover::before {
+    left: 100%;
+}
+
+.form-container button:active, .btn-primary:active {
+    transform: translateY(0);
 }
 
 /* ============================================================
@@ -205,65 +304,71 @@ header.hero-header .subtitle {
    ============================================================ */
 
 table {
-    width: 90%;
-    margin: 25px auto;
+    width: 95%;
+    margin: 30px auto;
     border-collapse: separate;
     border-spacing: 0;
-    background: white;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-    border-radius: 12px;
+    background: var(--white);
+    box-shadow: 0 8px 32px var(--shadow);
+    border-radius: var(--border-radius);
     overflow: hidden;
+    animation: fadeInUp 0.6s ease;
 }
 
 thead {
-    background: #1565c0;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
 }
 
 thead th {
-    padding: 15px;
+    padding: 18px;
     text-align: left;
-    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 tbody td {
-    padding: 14px;
-    border-bottom: 1px solid #e3e3e3;
+    padding: 16px 18px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: var(--transition);
 }
 
 tbody tr:hover {
-    background: #eaf2ff;
+    background: #f8f9ff;
+    transform: scale(1.01);
+}
+
+.btn-delete, .btn-edit {
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-right: 8px;
 }
 
 .btn-delete {
-    background: #d32f2f !important;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
+    background: #dc3545;
+    color: var(--white);
 }
 
 .btn-delete:hover {
-    background: #b71c1c !important;
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }
 
-
-/* Estilo para el botón Editar */
 .btn-edit {
-    background: #fbc02d !important; /* Amarillo/Naranja */
-    color: #333;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.2s;
-    margin-right: 5px; /* Espacio entre editar y eliminar */
-    border: none;
-    font-weight: bold;
+    background: #ffc107;
+    color: #212529;
 }
 
 .btn-edit:hover {
-    background: #f9a825 !important;
+    background: #e0a800;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
 }
 
 /* ============================================================
@@ -272,38 +377,116 @@ tbody tr:hover {
 .login-container {
     display: flex;
     justify-content: center;
-    padding: 50px 20px;
+    align-items: center;
+    min-height: 80vh;
+    padding: 40px 20px;
 }
 
 .login-box {
     width: 100%;
-    max-width: 420px;
-    background: white;
-    padding: 35px;
-    border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    max-width: 450px;
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px var(--shadow);
     text-align: center;
+    animation: fadeInUp 0.6s ease;
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
 .login-box h2 {
-    color: #1565c0;
-    margin-bottom: 15px;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
 
 .btn-login {
     width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    background: #1565c0;
-    color: white;
-    font-size: 17px;
-    margin-top: 15px;
+    padding: 16px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(21, 101, 192, 0.3);
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(21, 101, 192, 0.4);
 }
 
 /* ============================================================
-   ANIMACIONES
+   MAIN CONTENT
    ============================================================ */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to   { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .main-nav a {
+        justify-content: center;
+        padding: 10px 15px;
+    }
+    
+    .form-container, .welcome-box, .login-box {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+    
+    table {
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    thead th, tbody td {
+        padding: 12px 8px;
+        font-size: 0.9rem;
+    }
 }
