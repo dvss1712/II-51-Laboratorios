@@ -1,18 +1,16 @@
-// js/app_login.js
-const loginForm = document.getElementById("login-form");
+function login() {
+  const user = document.getElementById("usuario").value.trim();
+  const pass = document.getElementById("clave").value.trim();
+  const msg = document.getElementById("msg");
 
-if (loginForm) {
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const usuario = document.getElementById("usuario").value;
-    const clave = document.getElementById("clave").value;
-
-    // Validación básica simulada
-    if (usuario === "admin" && clave === "123") {
-      alert("¡Acceso concedido!");
-      window.location.href = "estudiantes.html"; 
-    } else {
-      alert("Usuario o contraseña incorrectos");
-    }
-  });
+  // Login simulado
+  if (
+    (user === "admin" && pass === "1234") ||
+    (user === "user" && pass === "1234")
+  ) {
+    localStorage.setItem("logueado", "true");
+    window.location.href = "estudiantes.html";
+  } else {
+    msg.textContent = "❌ Usuario o contraseña incorrectos";
+  }
 }
