@@ -229,7 +229,7 @@ header p {
 
 .input-modern label {
     position: absolute;
-    top: -8px;
+    top: -28px;
     left: 16px;
     background: var(--white);
     padding: 0 8px;
@@ -422,7 +422,7 @@ tbody tr:hover {
 }
 
 /* ============================================================
-   MAIN CONTENT
+   MAIN 
    ============================================================ */
 main {
     max-width: 1200px;
