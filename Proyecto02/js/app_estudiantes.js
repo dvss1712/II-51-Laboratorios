@@ -1,59 +1,85 @@
-import { supabase } from "./supabaseClient.js";
+let estudiantes = [];
+let editando = false;
+let indexEdit = -1;
 
-const form = document.getElementById("estudiante-form");
+function guardar() {
+  const est = {
+    id: id.value,
+    nombre: nombre.value,
+    email: email.value,
+    carrera: carrera.value
+  };
 
-const id = document.getElementById("id");
-const nombre = document.getElementById("nombreCompleto");
-const email = document.getElementById("email");
-const carrera = document.getElementById("carrera");
+  if (editando) {
+    estudiantes[indexEdit] = est;
+    editando = false;
+    indexEdit = -1;
+    titulo.textContent = "Registrar Estudiante";
+  } else {
+    estudiantes.push(est);
+  }
 
-const tabla = document.getElementById("lista-estudiantes-body");
-
-if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const { error } = await supabase.from("estudiantes").insert([
-      {
-        id: id.value,
-        nombre_completo: nombre.value,
-        email: email.value,
-        carrera: carrera.value
-      }
-    ]);
-
-    if (error) {
-      alert("Error: " + error.message);
-      return;
-    }
-
-    form.reset();
-    cargar();
-  });
+  limpiar();
+  cargar();
 }
 
-async function cargar() {
-  const { data } = await supabase.from("estudiantes").select("*");
+function cargar() {
+  const tbody = document.getElementById("tabla");
+  tbody.innerHTML = "";
 
-  tabla.innerHTML = "";
-
-  data.forEach((e) => {
-    tabla.innerHTML += `
+  estudiantes.forEach((e, i) => {
+    tbody.innerHTML += `
       <tr>
         <td>${e.id}</td>
-        <td>${e.nombre_completo}</td>
+        <td>${e.nombre}</td>
         <td>${e.email}</td>
         <td>${e.carrera}</td>
-        <td><button class="btn-delete" data-id="${e.id}">Eliminar</button></td>
-      </tr>`;
-  });
-
-  document.querySelectorAll(".btn-delete").forEach((btn) => {
-    btn.onclick = async () => {
-      await supabase.from("estudiantes").delete().eq("id", btn.dataset.id);
-      cargar();
-    };
+        <td>
+          <button onclick="editar(${i})">✏️</button>
+          <button onclick="eliminar(${i})">🗑️</button>
+        </td>
+      </tr>
+    `;
   });
 }
 
-cargar();
+function editar(i) {
+  const e = estudiantes[i];
+  id.value = e.id;
+  nombre.value = e.nombre;
+  email.value = e.email;
+  carrera.value = e.carrera;
+
+  editando = true;
+  indexEdit = i;
+  titulo.textContent = "Editar Estudiante";
+}
+
+function eliminar(i) {
+  if (confirm("¿Eliminar estudiante?")) {
+    estudiantes.splice(i, 1);
+    cargar();
+  }
+}
+
+function limpiar() {
+  id.value = "";
+  nombre.value = "";
+  email.value = "";
+  carrera.value = "";
+}
+
+function cancelar() {
+  limpiar();
+  editando = false;
+  titulo.textContent = "Registrar Estudiante";
+}
+
+function filtrar() {
+  const texto = buscar.value.toLowerCase();
+  document.querySelectorAll("#tabla tr").forEach(fila => {
+    fila.style.display = fila.innerText.toLowerCase().includes(texto)
+      ? ""
+      : "none";
+  });
+}
