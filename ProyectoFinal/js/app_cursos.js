@@ -2,159 +2,139 @@ import { supabase } from "./supabaseClient.js";
 
 const form = document.getElementById("curso-form");
 const tabla = document.getElementById("lista-cursos-body");
+const busquedaInput = document.getElementById("busqueda");
 
-// Inputs
 const idInput = document.getElementById("id");
 const profesorInput = document.getElementById("profesor_asignado");
 const nombreInput = document.getElementById("nombre");
 const creditosInput = document.getElementById("creditos");
 
 let idEditar = null;
+let listaGlobal = []; // Almacena los datos para filtrar localmente
 
-// ------------------------------------------------------------
-// EVENT DELEGATION
-// ------------------------------------------------------------
-tabla.addEventListener("click", async (e) => {
-  const btn = e.target.closest("button");
-  if (!btn) return;
-
-
-// ELIMINAR
-if (btn.classList.contains("btn-delete")) {
-  const id = btn.getAttribute("data-id"); // <-- mantener como texto
-  console.log("Eliminar curso id:", id);
-
-  if (!id) {
-    alert("ID inválido para eliminar.");
-    return;
-  }
-
-  if (confirm(`¿Seguro que deseas eliminar el curso ${id}?`)) {
-    const { data, error } = await supabase
-      .from("cursos")
-      .delete()
-      .eq("id", id)   // comparación con texto
-      .select();      // opcional: devuelve filas eliminadas
-
-    if (error) {
-      console.error("Error al eliminar curso:", error);
-      alert("Error al eliminar: " + error.message);
-    } else {
-      console.log("Curso eliminado:", data);
-      cargar();
-    }
-  }
-}
-
-
-
-  // EDITAR
-  if (btn.classList.contains("btn-edit")) {
-    const id = btn.getAttribute("data-id");
-    cargarDatosParaEditar(id);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+    cargar();
 });
 
-// ------------------------------------------------------------
-// CARGAR DATOS EN EL FORMULARIO
-// ------------------------------------------------------------
-async function cargarDatosParaEditar(id) {
-  const { data, error } = await supabase
-    .from("cursos")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-  if (error || !data) {
-    alert("No se pudo cargar la información para editar.");
-    return;
-  }
-
-  idInput.value = data.id;
-  profesorInput.value = data.profesor_asignado;
-  nombreInput.value = data.nombre;
-  creditosInput.value = data.creditos;
-
-  idInput.disabled = true;
-  idEditar = id;
+// --- FILTRO DE BÚSQUEDA ---
+if (busquedaInput) {
+    busquedaInput.addEventListener("input", (e) => {
+        const termino = e.target.value.toLowerCase();
+        const filtrados = listaGlobal.filter(item => 
+            item.nombre.toLowerCase().includes(termino) || 
+            item.profesor_asignado.toLowerCase().includes(termino) ||
+            String(item.id).includes(termino)
+        );
+        renderizarTabla(filtrados);
+    });
 }
 
-// ------------------------------------------------------------
-// GUARDAR
-// ------------------------------------------------------------
-if (form) {
-  form.addEventListener("submit", async (e) => {
+// --- GUARDAR / EDITAR ---
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const datos = {
-      id: idInput.value,
-      profesor_asignado: profesorInput.value,
-      nombre: nombreInput.value,
-      creditos: creditosInput.value
+        id: idInput.value,
+        profesor_asignado: profesorInput.value,
+        nombre: nombreInput.value,
+        creditos: creditosInput.value
     };
 
     let error = null;
 
     if (idEditar) {
-      const { error: updateError } = await supabase
-        .from("cursos")
-        .update({
-          profesor_asignado: datos.profesor_asignado,
-          nombre: datos.nombre,
-          creditos: datos.creditos
-        })
-        .eq("id", idEditar);
-      error = updateError;
+        const { error: updateError } = await supabase
+            .from("cursos")
+            .update({
+                profesor_asignado: datos.profesor_asignado,
+                nombre: datos.nombre,
+                creditos: datos.creditos
+            })
+            .eq("id", idEditar);
+        error = updateError;
     } else {
-      const { error: insertError } = await supabase
-        .from("cursos")
-        .insert([datos]);
-      error = insertError;
+        const { error: insertError } = await supabase
+            .from("cursos")
+            .insert([datos]);
+        error = insertError;
     }
 
     if (error) {
-      alert("Error al guardar: " + error.message);
-      return;
+        alert("Error al guardar: " + error.message);
+        return;
     }
 
     form.reset();
     idEditar = null;
     idInput.disabled = false;
     cargar();
-  });
-}
+});
 
-// ------------------------------------------------------------
-// CARGAR TABLA
-// ------------------------------------------------------------
+// --- ELIMINAR / EDITAR (Delegación) ---
+tabla.addEventListener("click", async (e) => {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    // Editar
+    if (btn.classList.contains("btn-edit")) {
+        const id = btn.getAttribute("data-id");
+        const curso = listaGlobal.find(c => String(c.id) === id);
+        if (curso) {
+            idInput.value = curso.id;
+            idInput.disabled = true;
+            profesorInput.value = curso.profesor_asignado;
+            nombreInput.value = curso.nombre;
+            creditosInput.value = curso.creditos;
+            idEditar = curso.id;
+        }
+    }
+
+    // Eliminar
+    if (btn.classList.contains("btn-delete")) {
+        const id = btn.getAttribute("data-id");
+        if (confirm(`¿Eliminar curso ${id}?`)) {
+            const { error } = await supabase.from("cursos").delete().eq("id", id);
+            if (error) alert("Error: " + error.message);
+            else cargar();
+        }
+    }
+});
+
+// --- CARGAR DATOS ---
 async function cargar() {
-  const { data, error } = await supabase
-    .from("cursos")
-    .select("*")
-    .order("id", { ascending: true });
+    const { data, error } = await supabase
+        .from("cursos")
+        .select("*")
+        .order("id", { ascending: true });
 
-  if (error) {
-    console.error(error);
-    return;
-  }
+    if (error) {
+        console.error(error);
+        return;
+    }
 
-  let html = "";
-  data.forEach((item) => {
-    html += `
-      <tr>
-        <td>${item.id}</td>
-        <td>${item.profesor_asignado}</td>
-        <td>${item.nombre}</td>
-        <td>${item.creditos}</td>
-        <td>
-          <button class="btn-edit" data-id="${item.id}">Editar</button>
-          <button class="btn-delete" data-id="${item.id}">Eliminar</button>
-        </td>
-      </tr>
-    `;
-  });
-
-  tabla.innerHTML = html;
+    listaGlobal = data; // Guardamos en memoria
+    renderizarTabla(listaGlobal);
 }
 
-cargar();
+// --- RENDERIZAR TABLA ---
+function renderizarTabla(lista) {
+    let html = "";
+    if (lista.length === 0) {
+        html = `<tr><td colspan="5" style="text-align:center;">No se encontraron resultados</td></tr>`;
+    } else {
+        lista.forEach((item) => {
+            html += `
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.profesor_asignado}</td>
+                <td>${item.nombre}</td>
+                <td>${item.creditos}</td>
+                <td>
+                    <button class="btn-edit" data-id="${item.id}"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-delete" data-id="${item.id}"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>`;
+        });
+    }
+    tabla.innerHTML = html;
+}
