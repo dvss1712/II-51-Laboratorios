@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,6 +16,7 @@
             --color-texto-principal: #e0f7fa;
             --color-gris-interfaz: #1b2632;
             --color-hover-item: #2c3a4b;
+            --color-footer: #00ff00;
             --glow-sombra: 0 0 10px rgba(0, 255, 255, 0.4);
             --glow-sombra-hover: 0 0 18px rgba(0, 255, 255, 0.9);
         }
@@ -33,20 +35,15 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         /* CONTENEDOR PRINCIPAL */
         .site-container {
             width: 100%;
-            max-width: 650px;
-            background-image: url(https://crmotos.com/wp-content/uploads/2021/06/ktm-250-exc-SIX-DAYS-2024-3.jpg);
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-color: var(--color-gris-interfaz);
+            max-width: 700px;
+            background: var(--color-gris-interfaz) url(https://crmotos.com/wp-content/uploads/2021/06/ktm-250-exc-SIX-DAYS-2024-3.jpg) center/cover no-repeat;
             background-blend-mode: multiply;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 30px;
             box-shadow: var(--glow-sombra);
             border: 1px solid var(--color-acento-neon);
@@ -71,41 +68,30 @@
         }
 
         header p {
-            font-size: 1em;
+            font-size: 1.1em;
             opacity: 0.9;
             margin: 0;
             animation: fadeInText 1.5s ease 0.8s both;
         }
 
-        /* LISTA DE LABORATORIOS */
+        /* LISTA DE ENTREGABLES */
         .laboratorios-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
-            justify-items: center;
             list-style: none;
             padding: 0;
             margin: 20px 0 30px 0;
         }
 
         .laboratorios-list li {
-            width: 100%;
-            max-width: 220px;
             opacity: 0;
             transform: translateY(20px);
             animation: slideUpFade 0.8s ease forwards;
         }
 
         /* ANIMACIÓN ESCALONADA */
-        .laboratorios-list li:nth-child(1) { animation-delay: 0.3s; }
-        .laboratorios-list li:nth-child(2) { animation-delay: 0.45s; }
-        .laboratorios-list li:nth-child(3) { animation-delay: 0.6s; }
-        .laboratorios-list li:nth-child(4) { animation-delay: 0.75s; }
-        .laboratorios-list li:nth-child(5) { animation-delay: 0.9s; }
-        .laboratorios-list li:nth-child(6) { animation-delay: 1.05s; }
-        .laboratorios-list li:nth-child(7) { animation-delay: 1.2s; }
-        .laboratorios-list li:nth-child(8) { animation-delay: 1.35s; }
-        .laboratorios-list li:nth-child(9) { animation-delay: 1.5s; }
+        .laboratorios-list li:nth-child(n) { animation-delay: calc(0.15s * var(--i)); }
 
         .laboratorios-list a {
             text-decoration: none;
@@ -117,7 +103,7 @@
             background-color: #23313f;
             border: 1px solid var(--color-acento-neon);
             border-radius: 6px;
-            padding: 14px 0;
+            padding: 14px;
             font-size: 1.05em;
             font-weight: 600;
             text-align: center;
@@ -147,7 +133,7 @@
         footer {
             text-align: center;
             padding-top: 15px;
-            font-size: 0.85em;
+            font-size: 0.9em;
             border-top: 1px dashed #35475e;
             margin-top: 25px;
             opacity: 0.85;
@@ -155,9 +141,9 @@
         }
 
         footer p {
-            color: #00ff00;
+            color: var(--color-footer);
             margin: 0;
-            text-shadow: 0 0 4px #00ff00;
+            text-shadow: 0 0 4px var(--color-footer);
         }
 
         /* KEYFRAMES */
@@ -193,7 +179,7 @@
 
             .laboratorios-list a {
                 font-size: 1em;
-                padding: 12px 16px;
+                padding: 12px;
             }
         }
     </style>
@@ -208,20 +194,21 @@
 
         <main>
             <ul class="laboratorios-list">
-                <li><a href="Lab01/index.html"><i class="fa-solid fa-puzzle-piece"></i> Laboratorio 01</a></li>
-                <li><a href="Lab02/index.html"><i class="fa-solid fa-gear"></i> Laboratorio 02</a></li>
-                <li><a href="Lab03/index.html"><i class="fa-solid fa-brain"></i> Laboratorio 03</a></li>
-                <li><a href="Lab04/index.html"><i class="fa-solid fa-code"></i> Laboratorio 04</a></li>
-                <li><a href="Lab05/index.html"><i class="fa-solid fa-globe"></i> Laboratorio 05</a></li>
-                <li><a href="Lab06/index.html"><i class="fa-solid fa-database"></i> Laboratorio 06</a></li>
-                <li><a href="Lab07/index.html"><i class="fa-solid fa-rocket"></i> Laboratorio 07</a></li>
-                <li><a href="Lab08/index.html"><i class="fa-solid fa-rocket"></i> Laboratorio 08</a></li>
-                <li><a href="Lab09/index.html"><i class="fa-solid fa-rocket"></i> Laboratorio 09</a></li>
-                <li><a href="investigacion01/index.html"><i class="fa-solid fa-book-open"></i> Investigación 01</a></li>
-                <li><a href="Proyecto01/index.html"><i class="fa-solid fa-flag-checkered"></i> Proyecto 01</a></li>
-                <li><a href="Proyecto02/index.html"><i class="fa-solid fa-flag-checkered"></i> Proyecto 02</a></li>
-                <li><a href="ProyectoFinal/index.html"><i class="fa-solid fa-flag-checkered"></i> Proyecto Final</a></li>
-                
+                <li style="--i:1"><a href="Lab01/index.html" aria-label="Laboratorio 01"><i class="fa-solid fa-database"></i> Laboratorio 01</a></li>
+                <li style="--i:2"><a href="Lab02/index.html" aria-label="Laboratorio 02"><i class="fa-solid fa-database"></i> Laboratorio 02</a></li>
+                <li style="--i:3"><a href="Lab03/index.html" aria-label="Laboratorio 03"><i class="fa-solid fa-database"></i> Laboratorio 03</a></li>
+                <li style="--i:4"><a href="Lab04/index.html" aria-label="Laboratorio 04"><i class="fa-solid fa-database"></i> Laboratorio 04</a></li>
+                <li style="--i:5"><a href="Lab05/index.html" aria-label="Laboratorio 05"><i class="fa-solid fa-database"></i> Laboratorio 05</a></li>
+                <li style="--i:6"><a href="Lab06/index.html" aria-label="Laboratorio 06"><i class="fa-solid fa-database"></i> Laboratorio 06</a></li>
+                <li style="--i:7"><a href="Lab07/index.html" aria-label="Laboratorio 07"><i class="fa-solid fa-database"></i> Laboratorio 07</a></li>
+                <li style="--i:8"><a href="Lab08/index.html" aria-label="Laboratorio 08"><i class="fa-solid fa-database"></i> Laboratorio 08</a></li>
+                <li style="--i:9"><a href="Lab09/index.html" aria-label="Laboratorio 09"><i class="fa-solid fa-database"></i> Laboratorio 09</a></li>
+                <li style="--i:10"><a href="Lab10/index.html" aria-label="Laboratorio 10"><i class="fa-solid fa-database"></i> Laboratorio 10</a></li>
+                <li style="--i:11"><a href="Proyecto01/index.html" aria-label="Proyecto 01"><i class="fa-solid fa-database"></i> Proyecto 01</a></li>
+                <li style="--i:11"><a href="Proyecto02/index.html" aria-label="Proyecto 01"><i class="fa-solid fa-database"></i> Proyecto 02</a></li>
+                <li style="--i:10"><a href="ProyectoFinal/index.html" aria-label="Proyecto Final"><i class="fa-solid fa-database"></i> Proyecto Final</a></li>
+
+               
             </ul>
         </main>
 
